@@ -1,0 +1,31 @@
+{
+  "name": "D-01: Container-Grundlagen",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "moby": true,
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "ms-vscode.live-server",
+        "streetsidesoftware.code-spell-checker-german"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.fontSize": 14
+      }
+    }
+  },
+  "postCreateCommand": "echo '✅ Umgebung bereit! Docker ist verfügbar.' && docker --version && echo '' && echo '👉 Starte mit: cat README.md'",
+  "forwardPorts": [8080, 3000],
+  "portsAttributes": {
+    "8080": { "label": "Nginx (Aufgabe 1)", "onAutoForward": "notify" },
+    "3000": { "label": "App", "onAutoForward": "notify" }
+  },
+  "remoteUser": "vscode"
+}
